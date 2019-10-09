@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 #include "Processing.NDI.Lib.h"
-#include "cinder/app/AppBase.h"
+#include "cinder/app/App.h"
 
 class CinderNDIFinder;
 using CinderNDIFinderPtr = std::unique_ptr<CinderNDIFinder>;
@@ -26,14 +26,14 @@ public:
 	CinderNDIFinder( const Description dscr );
 	~CinderNDIFinder();
 
-	ci::signals::Signal<void( const NDISource& )>& 	getSignalNDISourceAdded();
-	ci::signals::Signal<void( std::string )>& 	getSignalNDISourceRemoved();
+	ci::signals::signal<void( const NDISource& )>& 	getSignalNDISourceAdded();
+	ci::signals::signal<void( std::string )>& 	getSignalNDISourceRemoved();
 private:
 	void										update();
 private:
 	NDIFinderPtr 								mNDIFinder;
-	ci::signals::Connection 					mAppConnectionUpdate;
-	ci::signals::Signal<void( const NDISource& )>	mNDISourceAdded;
-	ci::signals::Signal<void( std::string )>	mNDISourceRemoved;
+	ci::signals::connection 					mAppConnectionUpdate;
+	ci::signals::signal<void( const NDISource& )>	mNDISourceAdded;
+	ci::signals::signal<void( std::string )>	mNDISourceRemoved;
 	ConnectedNDISources							mConnectedNDISources;
 };

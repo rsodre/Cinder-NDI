@@ -1,9 +1,10 @@
 #include "CinderNDIReceiver.h"
 #define CI_MIN_LOG_LEVEL 2
-#include "cinder/Log.h"
+//#include "cinder/Log.h"
 #include "cinder/Surface.h"
-#include "cinder/gl/Sync.h"
+//#include "cinder/gl/Sync.h"
 #include "cinder/audio/Context.h"
+#include <memory>
 
 CinderNDIReceiver::CinderNDIReceiver( const Description dscr )
 {
@@ -19,10 +20,12 @@ CinderNDIReceiver::CinderNDIReceiver( const Description dscr )
 	mNDIReceiver = NDIlib_recv_create_v3( &recvDscr );	
 	if( ! mNDIReceiver ) {
 		throw std::runtime_error( "Cannot create NDI Receiver. NDIlib_recv_create_v3 returned nullptr" );
-	}	
+	}
+	
+	mContext = [[CinderNDIContext alloc] init];
+
 	mVideoFramesBuffer = std::make_unique<VideoFramesBuffer>( 5 );
-	auto ctx = ci::gl::Context::create( ci::gl::context() );
-	mVideoRecvThread = std::make_unique<std::thread>( std::bind( &CinderNDIReceiver::videoRecvThread, this, ctx ) );
+	mVideoRecvThread = std::make_unique<std::thread>( std::bind( &CinderNDIReceiver::videoRecvThread, this, mContext ) );
 	mAudioRecvThread = std::make_unique<std::thread>( std::bind( &CinderNDIReceiver::audioRecvThread, this ) );
 }
 
@@ -45,9 +48,9 @@ CinderNDIReceiver::~CinderNDIReceiver()
 	NDIlib_destroy();
 }
 
-void CinderNDIReceiver::videoRecvThread( ci::gl::ContextRef ctx )
+void CinderNDIReceiver::videoRecvThread( CinderNDIContext* ctx )
 {
-	ctx->makeCurrent();
+	[ctx makeCurrentContext];
 	while( ! mExitVideoThread ) {
 		receiveVideo();
 	}
@@ -84,21 +87,22 @@ void CinderNDIReceiver::receiveVideo()
 	// NDIlib_recv_capture_v2 should be safe to call at the same time from multiple threads according to the SDK.
 	// e.g To capture video and audio at the same time from separate threads for example.
 	// Wait max .5 sec for a new frame to arrive.
-	switch( NDIlib_recv_capture_v2( mNDIReceiver, &videoFrame, nullptr, nullptr, 500 ) ) { 
-		case NDIlib_frame_type_none:
-		{
-			CI_LOG_V( "No data available...." ); 
-			break;
-		}
+	switch( NDIlib_recv_capture_v2( mNDIReceiver, &videoFrame, nullptr, nullptr, 500 ) ) {
 		case NDIlib_frame_type_video:
 		{
-			CI_LOG_V( "Received video frame with resolution : ( " << videoFrame.xres << ", " << videoFrame.yres << " ) " );
-			auto surface = ci::Surface::create( videoFrame.p_data, videoFrame.xres, videoFrame.yres, videoFrame.line_stride_in_bytes, ci::SurfaceChannelOrder::RGBA );
-			auto tex = ci::gl::Texture::create( *surface );
-			auto fence = ci::gl::Sync::create();
-			fence->clientWaitSync();
+			std::cout << "Received video frame with resolution : ( " << videoFrame.xres << ", " << videoFrame.yres << " ) " << std::endl;
+			auto surface = ci::Surface( videoFrame.p_data, videoFrame.xres, videoFrame.yres, videoFrame.line_stride_in_bytes, ci::SurfaceChannelOrder::RGBA );
+			auto tex = std::make_shared<ci::gl::Texture>( surface );
+//			auto fence = ci::gl::Sync::create();
+//			fence->clientWaitSync();
 			mVideoFramesBuffer->pushFront( tex );
 			NDIlib_recv_free_video_v2( mNDIReceiver, &videoFrame );
+			break;
+		}
+		case NDIlib_frame_type_none:
+		default:
+		{
+			std::cout << "No data available...." << std::endl;
 			break;
 		}
 	}
@@ -111,14 +115,9 @@ void CinderNDIReceiver::receiveAudio()
 	// e.g To capture video and audio at the same time from separate threads for example.
 	// Wait max .5 sec for a new frame to arrive.
 	switch( NDIlib_recv_capture_v2( mNDIReceiver, nullptr, &audioFrame, nullptr, 50 ) ) { 
-		case NDIlib_frame_type_none:
-		{
-			CI_LOG_V( "No data available...." ); 
-			break;
-		}
 		case NDIlib_frame_type_audio:
 		{
-			CI_LOG_V( "Received audio frame with no_samples : " << audioFrame.no_samples << " channels: " << audioFrame.no_channels << " channel stride: " << audioFrame.channel_stride_in_bytes ); 
+			std::cout << "Received audio frame with no_samples : " << audioFrame.no_samples << " channels: " << audioFrame.no_channels << " channel stride: " << audioFrame.channel_stride_in_bytes << std::endl;
 			{
 				std::lock_guard<std::mutex> lock( mAudioMutex );
 				if( ! mCurrentAudioBuffer || mCurrentAudioBuffer->getNumChannels() != audioFrame.no_channels ) {
@@ -137,6 +136,12 @@ void CinderNDIReceiver::receiveAudio()
 				mRingBuffers[ch].write( audioFrame.p_data + ch * audioFrame.no_samples, audioFrame.no_samples );
 			}
 			NDIlib_recv_free_audio_v2( mNDIReceiver, &audioFrame );
+			break;
+		}
+		default:
+		case NDIlib_frame_type_none:
+		{
+			std::cout << "No data available...." << std::endl;
 			break;
 		}
 	}

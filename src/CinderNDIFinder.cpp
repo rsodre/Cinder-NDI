@@ -12,7 +12,7 @@ CinderNDIFinder::CinderNDIFinder( const Description dscr )
 		throw std::runtime_error( "Cannot create NDI Finder. NDIlib_find_create_v2 returned nullptr" );
 	}
 	// Connect to the application update loop for polling the NDIFinder
-	mAppConnectionUpdate = ci::app::AppBase::get()->getSignalUpdate().connect( 
+	mAppConnectionUpdate = ci::app::AppBasic::get()->getSignalUpdate().connect(
 		std::bind( &CinderNDIFinder::update, this )
 	);
 }
@@ -42,7 +42,7 @@ void CinderNDIFinder::update()
 			if( currentSources == 0 ) {
 				auto sourceIt = mConnectedNDISources.begin();
 				while( sourceIt != mConnectedNDISources.end() ) {
-					mNDISourceRemoved.emit( sourceIt->name );
+					mNDISourceRemoved( sourceIt->name );
 					sourceIt = mConnectedNDISources.erase( sourceIt );
 				}
 			}
@@ -55,7 +55,7 @@ void CinderNDIFinder::update()
 						}	
 					}
 					if( ! exists ) {
-						mNDISourceRemoved.emit( sourceIt->name );
+						mNDISourceRemoved( sourceIt->name );
 						sourceIt = mConnectedNDISources.erase( sourceIt );
 					}
 					else {
@@ -77,19 +77,19 @@ void CinderNDIFinder::update()
 							);
 				if( sourceIt == mConnectedNDISources.end() ) {
 					mConnectedNDISources.emplace_back( CinderNDISource{ sources[ sourceIndex ].p_ndi_name } );	
-					mNDISourceAdded.emit( sources[ sourceIndex ] );
+					mNDISourceAdded( sources[ sourceIndex ] );
 				}
 			}
 		}
 	}
 }
 
-ci::signals::Signal<void( const NDISource& )>& CinderNDIFinder::getSignalNDISourceAdded()
+ci::signals::signal<void( const NDISource& )>& CinderNDIFinder::getSignalNDISourceAdded()
 {
 	return mNDISourceAdded;
 }
 
-ci::signals::Signal<void( std::string )>& CinderNDIFinder::getSignalNDISourceRemoved()
+ci::signals::signal<void( std::string )>& CinderNDIFinder::getSignalNDISourceRemoved()
 {
 	return mNDISourceRemoved;
 }

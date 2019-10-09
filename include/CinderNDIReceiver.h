@@ -2,11 +2,12 @@
 
 #include <memory>
 #include "cinder/gl/Texture.h"
-#include "cinder/gl/Context.h"
+//#include "cinder/gl/Context.h"
 #include "cinder/ConcurrentCircularBuffer.h"
 #include "cinder/audio/Buffer.h"
 #include "cinder/audio/dsp/RingBuffer.h"
 #include "CinderNDIFinder.h"
+#include "CinderNDIContext.h"
 
 class CinderNDIReceiver;
 using CinderNDIReceiverPtr = std::unique_ptr<CinderNDIReceiver>;
@@ -48,7 +49,7 @@ public:
 	ci::gl::TextureRef getVideoTexture();
 	ci::audio::BufferRef getAudioBuffer();
 private:
-	void videoRecvThread( ci::gl::ContextRef ctx );
+	void videoRecvThread( CinderNDIContext* ctx );
 	void receiveVideo();
 	void audioRecvThread();
 	void receiveAudio();
@@ -59,6 +60,7 @@ private:
 	std::unique_ptr<std::thread> 	mVideoRecvThread;
 	ci::gl::TextureRef				mVideoTexture;
 	
+	CinderNDIContext*				mContext;
 	std::unique_ptr<std::thread> 	mAudioRecvThread;
 	ci::audio::BufferRef			mCurrentAudioBuffer;
 	std::vector<ci::audio::dsp::RingBuffer> 		mRingBuffers;

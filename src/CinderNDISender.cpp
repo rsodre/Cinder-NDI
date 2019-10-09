@@ -1,5 +1,5 @@
 #include "CinderNDISender.h"
-#include "cinder/Log.h"
+//#include "cinder/Log.h"
 #include "cinder/Surface.h"
 #include "cinder/ip/Flip.h"
 #include "Processing.NDI.Lib.h"
@@ -75,7 +75,7 @@ void CinderNDISender::sendSurface( ci::Surface* surface, const VideoFrameParams*
 		// Check to see if we have received any connection metadata from the receiver side
 		NDIConnectionMeta rcvMeta;
 		if( NDIlib_send_capture( mNDISender, &rcvMeta, 0 ) ) {
-			CI_LOG_I( "Got meta from receiver: " << rcvMeta.p_data );
+			std::cout << "Got meta from receiver: " << rcvMeta.p_data << std::endl;
 			NDIlib_send_free_metadata( mNDISender, &rcvMeta );
 		}
 		auto videoFrame = createVideoFrameFromSurface( surface, videoFrameParams );	

@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		D6B6EBD52E6B41E2BD60FB77 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = E9526962FA0144369EAA09C1 /* CinderApp.icns */; };
+		DB21921E234E489A00533EE5 /* CinderNDIContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB21921D234E489A00533EE5 /* CinderNDIContext.mm */; };
+		DB87BFC9220888A100FFE114 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DB87BF5B220888A000FFE114 /* README.md */; };
+		DB87BFF6220888A100FFE114 /* BasicReceiverApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFB1220888A100FFE114 /* BasicReceiverApp.mm */; };
+		DB87BFF7220888A100FFE114 /* libndi.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB87BFC3220888A100FFE114 /* libndi.3.dylib */; };
+		DB87BFF8220888A100FFE114 /* CinderNDISender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFC5220888A100FFE114 /* CinderNDISender.cpp */; };
+		DB87BFF9220888A100FFE114 /* CinderNDIFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFC6220888A100FFE114 /* CinderNDIFinder.cpp */; };
+		DB87BFFA220888A100FFE114 /* CinderNDIReceiver.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFC7220888A100FFE114 /* CinderNDIReceiver.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		14A3A5B581D44CD286481ADE /* BasicRcv_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = BasicRcv_Prefix.pch; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		6FD2128836874219A3358BB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AC5620546AF4312A6D8FDA1 /* BasicRcvApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = BasicRcvApp.cpp; path = ../src/BasicRcvApp.cpp; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* BasicRcv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicRcv.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADF705805D0E47329F82E6A1 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		DB21921D234E489A00533EE5 /* CinderNDIContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CinderNDIContext.mm; sourceTree = "<group>"; };
+		DB21921F234E48AB00533EE5 /* CinderNDIContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderNDIContext.h; sourceTree = "<group>"; };
+		DB87BF58220888A000FFE114 /* CinderNDIFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderNDIFinder.h; sourceTree = "<group>"; };
+		DB87BF59220888A000FFE114 /* CinderNDISender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderNDISender.h; sourceTree = "<group>"; };
+		DB87BF5A220888A000FFE114 /* CinderNDIReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderNDIReceiver.h; sourceTree = "<group>"; };
+		DB87BF5B220888A000FFE114 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DB87BFB1220888A100FFE114 /* BasicReceiverApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BasicReceiverApp.mm; sourceTree = "<group>"; };
+		DB87BFB5220888A100FFE114 /* Processing.NDI.compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.compat.h; sourceTree = "<group>"; };
+		DB87BFB6220888A100FFE114 /* Processing.NDI.utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.utilities.h; sourceTree = "<group>"; };
+		DB87BFB7220888A100FFE114 /* Processing.NDI.Recv.ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.Recv.ex.h; sourceTree = "<group>"; };
+		DB87BFB8220888A100FFE114 /* Processing.NDI.deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.deprecated.h; sourceTree = "<group>"; };
+		DB87BFB9220888A100FFE114 /* Processing.NDI.Routing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.Routing.h; sourceTree = "<group>"; };
+		DB87BFBA220888A100FFE114 /* Processing.NDI.Send.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.Send.h; sourceTree = "<group>"; };
+		DB87BFBB220888A100FFE114 /* Processing.NDI.structs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.structs.h; sourceTree = "<group>"; };
+		DB87BFBC220888A100FFE114 /* Processing.NDI.Lib.cplusplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.Lib.cplusplus.h; sourceTree = "<group>"; };
+		DB87BFBD220888A100FFE114 /* Processing.NDI.Find.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.Find.h; sourceTree = "<group>"; };
+		DB87BFBE220888A100FFE114 /* Processing.NDI.DynamicLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.DynamicLoad.h; sourceTree = "<group>"; };
+		DB87BFBF220888A100FFE114 /* Processing.NDI.Recv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.Recv.h; sourceTree = "<group>"; };
+		DB87BFC0220888A100FFE114 /* Processing.NDI.Lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing.NDI.Lib.h; sourceTree = "<group>"; };
+		DB87BFC3220888A100FFE114 /* libndi.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libndi.3.dylib; sourceTree = "<group>"; };
+		DB87BFC5220888A100FFE114 /* CinderNDISender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CinderNDISender.cpp; sourceTree = "<group>"; };
+		DB87BFC6220888A100FFE114 /* CinderNDIFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CinderNDIFinder.cpp; sourceTree = "<group>"; };
+		DB87BFC7220888A100FFE114 /* CinderNDIReceiver.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CinderNDIReceiver.mm; sourceTree = "<group>"; };
+		E9526962FA0144369EAA09C1 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				DB87BFF7220888A100FFE114 /* libndi.3.dylib in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BF53220888A000FFE114 /* Cinder-NDI */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7AC5620546AF4312A6D8FDA1 /* BasicRcvApp.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B50EAFCA7E003A9687 /* QTKit.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* BasicRcv.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* BasicRcv */ = {
+			isa = PBXGroup;
+			children = (
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = BasicRcv;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				ADF705805D0E47329F82E6A1 /* Resources.h */,
+				14A3A5B581D44CD286481ADE /* BasicRcv_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E9526962FA0144369EAA09C1 /* CinderApp.icns */,
+				6FD2128836874219A3358BB0 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB87BF53220888A000FFE114 /* Cinder-NDI */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BF5B220888A000FFE114 /* README.md */,
+				DB87BFB2220888A100FFE114 /* lib */,
+				DB87BF57220888A000FFE114 /* include */,
+				DB87BFC4220888A100FFE114 /* src */,
+				DB87BF5C220888A000FFE114 /* samples */,
+			);
+			name = "Cinder-NDI";
+			path = ../../../../..;
+			sourceTree = "<group>";
+		};
+		DB87BF57220888A000FFE114 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				DB21921F234E48AB00533EE5 /* CinderNDIContext.h */,
+				DB87BF58220888A000FFE114 /* CinderNDIFinder.h */,
+				DB87BF59220888A000FFE114 /* CinderNDISender.h */,
+				DB87BF5A220888A000FFE114 /* CinderNDIReceiver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		DB87BF5C220888A000FFE114 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BF65220888A000FFE114 /* BasicRcv */,
+			);
+			path = samples;
+			sourceTree = "<group>";
+		};
+		DB87BF65220888A000FFE114 /* BasicRcv */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BFB0220888A100FFE114 /* src */,
+			);
+			path = BasicRcv;
+			sourceTree = "<group>";
+		};
+		DB87BFB0220888A100FFE114 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BFB1220888A100FFE114 /* BasicReceiverApp.mm */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		DB87BFB2220888A100FFE114 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BFB3220888A100FFE114 /* NDI */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		DB87BFB3220888A100FFE114 /* NDI */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BFB4220888A100FFE114 /* include */,
+				DB87BFC1220888A100FFE114 /* lib */,
+			);
+			path = NDI;
+			sourceTree = "<group>";
+		};
+		DB87BFB4220888A100FFE114 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BFB5220888A100FFE114 /* Processing.NDI.compat.h */,
+				DB87BFB6220888A100FFE114 /* Processing.NDI.utilities.h */,
+				DB87BFB7220888A100FFE114 /* Processing.NDI.Recv.ex.h */,
+				DB87BFB8220888A100FFE114 /* Processing.NDI.deprecated.h */,
+				DB87BFB9220888A100FFE114 /* Processing.NDI.Routing.h */,
+				DB87BFBA220888A100FFE114 /* Processing.NDI.Send.h */,
+				DB87BFBB220888A100FFE114 /* Processing.NDI.structs.h */,
+				DB87BFBC220888A100FFE114 /* Processing.NDI.Lib.cplusplus.h */,
+				DB87BFBD220888A100FFE114 /* Processing.NDI.Find.h */,
+				DB87BFBE220888A100FFE114 /* Processing.NDI.DynamicLoad.h */,
+				DB87BFBF220888A100FFE114 /* Processing.NDI.Recv.h */,
+				DB87BFC0220888A100FFE114 /* Processing.NDI.Lib.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		DB87BFC1220888A100FFE114 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BFC2220888A100FFE114 /* macos */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		DB87BFC2220888A100FFE114 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				DB87BFC3220888A100FFE114 /* libndi.3.dylib */,
+			);
+			path = macos;
+			sourceTree = "<group>";
+		};
+		DB87BFC4220888A100FFE114 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DB21921D234E489A00533EE5 /* CinderNDIContext.mm */,
+				DB87BFC5220888A100FFE114 /* CinderNDISender.cpp */,
+				DB87BFC6220888A100FFE114 /* CinderNDIFinder.cpp */,
+				DB87BFC7220888A100FFE114 /* CinderNDIReceiver.mm */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* BasicRcv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BasicRcv" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BasicRcv;
+			productInstallPath = "$(HOME)/Applications";
+			productName = BasicRcv;
+			productReference = 8D1107320486CEB800E47090 /* BasicRcv.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicRcv" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* BasicRcv */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* BasicRcv */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB87BFC9220888A100FFE114 /* README.md in Resources */,
+				D6B6EBD52E6B41E2BD60FB77 /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB87BFFA220888A100FFE114 /* CinderNDIReceiver.mm in Sources */,
+				DB87BFF9220888A100FFE114 /* CinderNDIFinder.cpp in Sources */,
+				DB87BFF8220888A100FFE114 /* CinderNDISender.cpp in Sources */,
+				DB87BFF6220888A100FFE114 /* BasicReceiverApp.mm in Sources */,
+				DB21921E234E489A00533EE5 /* CinderNDIContext.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicRcv_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
+				PRODUCT_NAME = BasicRcv;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicRcv_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
+				PRODUCT_NAME = BasicRcv;
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CINDER_PATH = ../../../../../../..;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				LIBRARY_SEARCH_PATHS = "../../../../..//lib/NDI/lib/macos";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CINDER_PATH = ../../../../../../..;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				LIBRARY_SEARCH_PATHS = "../../../../..//lib/NDI/lib/macos";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BasicRcv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicRcv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

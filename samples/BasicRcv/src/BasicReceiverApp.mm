@@ -1,5 +1,4 @@
-#include "cinder/app/App.h"
-#include "cinder/app/RendererGl.h"
+#include "cinder/app/AppNative.h"
 #include "cinder/gl/gl.h"
 #include "CinderNDIReceiver.h"
 #include "CinderNDIFinder.h"
@@ -9,12 +8,12 @@
 using namespace ci;
 using namespace ci::app;
 
-class BasicReceiverApp : public App {
+class BasicReceiverApp : public AppNative {
 public:
-	void setup() final;
-	void update() final;
-	void draw() final;
-	void cleanup() final;
+	void setup() override;
+	void update() override;
+	void draw() override;
+	void shutdown() override;
 private:
 	void sourceAdded( const NDISource& source );
 	void sourceRemoved( const std::string sourceName );
@@ -22,16 +21,12 @@ private:
 private:
 	CinderNDIFinderPtr mCinderNDIFinder;
 	CinderNDIReceiverPtr mCinderNDIReceiver;
-	ci::signals::Connection mNDISourceAdded;
-	ci::signals::Connection mNDISourceRemoved;
+	ci::signals::connection mNDISourceAdded;
+	ci::signals::connection mNDISourceRemoved;
 	ci::audio::VoiceRef	mNDIVoice;
 };
 
-void prepareSettings( BasicReceiverApp::Settings* settings )
-{
-}
-
-void BasicReceiverApp::cleanup()
+void BasicReceiverApp::shutdown()
 {
 	if( mCinderNDIFinder ) {
 		mNDISourceAdded.disconnect();	
@@ -96,4 +91,4 @@ void BasicReceiverApp::draw()
 }
 
 // This line tells Cinder to actually create and run the application.
-CINDER_APP( BasicReceiverApp, RendererGl, prepareSettings )
+CINDER_APP_BASIC( BasicReceiverApp, app::RendererGl )
