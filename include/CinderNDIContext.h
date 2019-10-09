@@ -8,7 +8,7 @@
 	NSOpenGLContext		*context_;
 }
 
-- (id)init;
+- (id)initShared;
 - (void)release;
 - (NSOpenGLContext*)context;
 - (void)makeCurrentContext;

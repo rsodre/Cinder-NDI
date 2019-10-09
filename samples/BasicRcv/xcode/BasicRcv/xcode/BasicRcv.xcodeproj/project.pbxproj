@@ -17,6 +17,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		D6B6EBD52E6B41E2BD60FB77 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = E9526962FA0144369EAA09C1 /* CinderApp.icns */; };
 		DB21921E234E489A00533EE5 /* CinderNDIContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB21921D234E489A00533EE5 /* CinderNDIContext.mm */; };
+		DB6E44EA234E541700DD05C3 /* Sync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB6E44E9234E541700DD05C3 /* Sync.cpp */; };
 		DB87BFC9220888A100FFE114 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DB87BF5B220888A000FFE114 /* README.md */; };
 		DB87BFF6220888A100FFE114 /* BasicReceiverApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFB1220888A100FFE114 /* BasicReceiverApp.mm */; };
 		DB87BFF7220888A100FFE114 /* libndi.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB87BFC3220888A100FFE114 /* libndi.3.dylib */; };
@@ -43,6 +44,10 @@
 		ADF705805D0E47329F82E6A1 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		DB21921D234E489A00533EE5 /* CinderNDIContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CinderNDIContext.mm; sourceTree = "<group>"; };
 		DB21921F234E48AB00533EE5 /* CinderNDIContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderNDIContext.h; sourceTree = "<group>"; };
+		DB6E44E9234E541700DD05C3 /* Sync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sync.cpp; sourceTree = "<group>"; };
+		DB6E44EB234E542400DD05C3 /* Sync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
+		DB6E44EC234E5AD200DD05C3 /* Context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Context.h; sourceTree = "<group>"; };
+		DB6E44ED234E5ADE00DD05C3 /* Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Context.cpp; sourceTree = "<group>"; };
 		DB87BF58220888A000FFE114 /* CinderNDIFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderNDIFinder.h; sourceTree = "<group>"; };
 		DB87BF59220888A000FFE114 /* CinderNDISender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderNDISender.h; sourceTree = "<group>"; };
 		DB87BF5A220888A000FFE114 /* CinderNDIReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderNDIReceiver.h; sourceTree = "<group>"; };
@@ -195,6 +200,8 @@
 				DB87BF58220888A000FFE114 /* CinderNDIFinder.h */,
 				DB87BF59220888A000FFE114 /* CinderNDISender.h */,
 				DB87BF5A220888A000FFE114 /* CinderNDIReceiver.h */,
+				DB6E44EC234E5AD200DD05C3 /* Context.h */,
+				DB6E44EB234E542400DD05C3 /* Sync.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -282,6 +289,8 @@
 				DB87BFC5220888A100FFE114 /* CinderNDISender.cpp */,
 				DB87BFC6220888A100FFE114 /* CinderNDIFinder.cpp */,
 				DB87BFC7220888A100FFE114 /* CinderNDIReceiver.mm */,
+				DB6E44ED234E5ADE00DD05C3 /* Context.cpp */,
+				DB6E44E9234E541700DD05C3 /* Sync.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -350,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6E44EA234E541700DD05C3 /* Sync.cpp in Sources */,
 				DB87BFFA220888A100FFE114 /* CinderNDIReceiver.mm in Sources */,
 				DB87BFF9220888A100FFE114 /* CinderNDIFinder.cpp in Sources */,
 				DB87BFF8220888A100FFE114 /* CinderNDISender.cpp in Sources */,

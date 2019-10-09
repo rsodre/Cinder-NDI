@@ -1,16 +1,20 @@
 #include "CinderNDIContext.h"
+#include "cinder/app/AppNative.h"
 #import "cinder/app/AppImplCocoaRendererGl.h"
 #include <memory>
 
 
 @implementation CinderNDIContext
 
-- (id)init
+- (id)initShared
 {
 	self = [super init];
 	
 	NSOpenGLPixelFormat* fmt = [AppImplCocoaRendererGl defaultPixelFormat:0];
-	context_ = [[NSOpenGLContext alloc] initWithFormat:fmt shareContext:nil];
+	
+	auto sharedRenderer = static_cast<ci::app::RendererGl*>( ci::app::AppNative::get()->getRenderer().get() );
+
+	context_ = [[NSOpenGLContext alloc] initWithFormat:fmt shareContext:sharedRenderer->getNsOpenGlContext()];
 	
 	return self;
 }

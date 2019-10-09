@@ -8,6 +8,7 @@
 #include "cinder/audio/dsp/RingBuffer.h"
 #include "CinderNDIFinder.h"
 #include "CinderNDIContext.h"
+//#include "Context.h"
 
 class CinderNDIReceiver;
 using CinderNDIReceiverPtr = std::unique_ptr<CinderNDIReceiver>;
@@ -49,6 +50,7 @@ public:
 	ci::gl::TextureRef getVideoTexture();
 	ci::audio::BufferRef getAudioBuffer();
 private:
+//	void videoRecvThread( ci::gl::ContextRef ctx );
 	void videoRecvThread( CinderNDIContext* ctx );
 	void receiveVideo();
 	void audioRecvThread();

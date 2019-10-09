@@ -4,6 +4,7 @@
 #include "cinder/Surface.h"
 //#include "cinder/gl/Sync.h"
 #include "cinder/audio/Context.h"
+#include "Sync.h"
 #include <memory>
 
 CinderNDIReceiver::CinderNDIReceiver( const Description dscr )
@@ -22,8 +23,9 @@ CinderNDIReceiver::CinderNDIReceiver( const Description dscr )
 		throw std::runtime_error( "Cannot create NDI Receiver. NDIlib_recv_create_v3 returned nullptr" );
 	}
 	
-	mContext = [[CinderNDIContext alloc] init];
-
+	mContext = [[CinderNDIContext alloc] initShared];
+//	auto ctx = ci::gl::Context::create( ci::gl::context() );
+	
 	mVideoFramesBuffer = std::make_unique<VideoFramesBuffer>( 5 );
 	mVideoRecvThread = std::make_unique<std::thread>( std::bind( &CinderNDIReceiver::videoRecvThread, this, mContext ) );
 	mAudioRecvThread = std::make_unique<std::thread>( std::bind( &CinderNDIReceiver::audioRecvThread, this ) );
@@ -48,6 +50,7 @@ CinderNDIReceiver::~CinderNDIReceiver()
 	NDIlib_destroy();
 }
 
+//void CinderNDIReceiver::videoRecvThread( ci::gl::ContextRef ctx )
 void CinderNDIReceiver::videoRecvThread( CinderNDIContext* ctx )
 {
 	[ctx makeCurrentContext];
@@ -93,8 +96,8 @@ void CinderNDIReceiver::receiveVideo()
 			std::cout << "Received video frame with resolution : ( " << videoFrame.xres << ", " << videoFrame.yres << " ) " << std::endl;
 			auto surface = ci::Surface( videoFrame.p_data, videoFrame.xres, videoFrame.yres, videoFrame.line_stride_in_bytes, ci::SurfaceChannelOrder::RGBA );
 			auto tex = std::make_shared<ci::gl::Texture>( surface );
-//			auto fence = ci::gl::Sync::create();
-//			fence->clientWaitSync();
+			auto fence = ci::gl::Sync::create();
+			fence->clientWaitSync();
 			mVideoFramesBuffer->pushFront( tex );
 			NDIlib_recv_free_video_v2( mNDIReceiver, &videoFrame );
 			break;
