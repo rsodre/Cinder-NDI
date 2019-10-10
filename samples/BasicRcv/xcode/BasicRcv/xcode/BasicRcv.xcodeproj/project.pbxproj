@@ -24,7 +24,21 @@
 		DB87BFF8220888A100FFE114 /* CinderNDISender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFC5220888A100FFE114 /* CinderNDISender.cpp */; };
 		DB87BFF9220888A100FFE114 /* CinderNDIFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFC6220888A100FFE114 /* CinderNDIFinder.cpp */; };
 		DB87BFFA220888A100FFE114 /* CinderNDIReceiver.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB87BFC7220888A100FFE114 /* CinderNDIReceiver.mm */; };
+		DBFF6C89234E9E8D00925531 /* libndi.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB87BFC3220888A100FFE114 /* libndi.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DBFF6C88234E9E8200925531 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				DBFF6C89234E9E8D00925531 /* libndi.3.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
@@ -305,6 +319,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				DBFF6C88234E9E8200925531 /* CopyFiles */,
+				DBFF6C98234EA5A600925531 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -353,6 +369,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DBFF6C98234EA5A600925531 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Search dynamic libraries in Produt.app/Contents/MacOS/\nexport THE_PRODUCT=\"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}/${EXECUTABLE_NAME}\"\notool -l \"${THE_PRODUCT}\" | grep RPATH -A2 | grep \"@executable_path/.\"\nrpath_exists=$?\nif [ $rpath_exists -ne 0 ]; then\n    echo \"--- Update rpath...\"\n    install_name_tool -add_rpath @executable_path/. \"${THE_PRODUCT}\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
