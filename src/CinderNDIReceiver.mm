@@ -4,6 +4,7 @@
 #include "cinder/Surface.h"
 //#include "cinder/gl/Sync.h"
 #include "cinder/audio/Context.h"
+#include "CinderNDIContext.h"
 #include "Sync.h"
 #include <memory>
 
@@ -163,3 +164,27 @@ ci::audio::BufferRef CinderNDIReceiver::getAudioBuffer()
 	return mCurrentAudioBuffer;
 }
 
+// ROGER
+void CinderNDIReceiver::bind(int unit)
+{
+	if(mVideoTexture)
+	{
+		// Save old GL_TEXTURE_RECTANGLE_ARB binding or else we can mess GL_TEXTURE_2D used after
+		glGetBooleanv( GL_TEXTURE_RECTANGLE_ARB, &mOldTargetBinding );
+		
+		mVideoTexture->enableAndBind(unit);
+	}
+}
+
+void CinderNDIReceiver::unbind(int unit)
+{
+	if (mVideoTexture)
+	{
+		mVideoTexture->unbind(unit);
+		
+		if( mOldTargetBinding )
+			glEnable( GL_TEXTURE_RECTANGLE_ARB );
+		else
+			glDisable( GL_TEXTURE_RECTANGLE_ARB );
+	}
+}

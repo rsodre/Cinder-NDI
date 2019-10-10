@@ -7,8 +7,13 @@
 #include "cinder/audio/Buffer.h"
 #include "cinder/audio/dsp/RingBuffer.h"
 #include "CinderNDIFinder.h"
-#include "CinderNDIContext.h"
 //#include "Context.h"
+
+#ifdef __OBJC__
+@class CinderNDIContext;
+#else
+class CinderNDIContext;
+#endif
 
 class CinderNDIReceiver;
 using CinderNDIReceiverPtr = std::unique_ptr<CinderNDIReceiver>;
@@ -49,6 +54,10 @@ public:
 	void disconnect();
 	ci::gl::TextureRef getVideoTexture();
 	ci::audio::BufferRef getAudioBuffer();
+	
+	// ROGER
+	void bind(int unit=0);
+	void unbind(int unit=0);
 private:
 //	void videoRecvThread( ci::gl::ContextRef ctx );
 	void videoRecvThread( CinderNDIContext* ctx );
@@ -69,4 +78,6 @@ private:
 	std::mutex						mAudioMutex;
 	bool							mExitVideoThread{ false };
 	bool							mExitAudioThread{ false };
+	// ROGER
+	GLboolean mOldTargetBinding;
 };
