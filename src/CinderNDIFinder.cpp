@@ -93,3 +93,29 @@ ci::signals::signal<void( std::string )>& CinderNDIFinder::getSignalNDISourceRem
 {
 	return mNDISourceRemoved;
 }
+
+// ROGER
+unsigned CinderNDIFinder::getSourcesCount()
+{
+	return mConnectedNDISources.size();
+}
+std::string CinderNDIFinder::getSourceName( unsigned sourceIndex )
+{
+	return ( sourceIndex < mConnectedNDISources.size() ? mConnectedNDISources[sourceIndex].name : std::string() );
+}
+bool CinderNDIFinder::getSource( const std::string sourceName, NDISource& source )
+{
+	uint32_t currentSources = 0;
+	const auto* sources = NDIlib_find_get_current_sources( mNDIFinder, &currentSources );
+	for( size_t sourceIndex = 0; sourceIndex < currentSources; ++sourceIndex )
+	{
+		if( sources[ sourceIndex ].p_ndi_name == sourceName )
+		{
+			source = sources[ sourceIndex ];
+			return true;
+		}
+	}
+	return false;
+}
+
+

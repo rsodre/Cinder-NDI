@@ -28,6 +28,12 @@ public:
 
 	ci::signals::signal<void( const NDISource& )>& 	getSignalNDISourceAdded();
 	ci::signals::signal<void( std::string )>& 	getSignalNDISourceRemoved();
+	
+	// ROger
+	unsigned getSourcesCount();
+	std::string getSourceName( unsigned sourceIndex );
+	bool getSource( const std::string sourceName, NDISource& source );
+
 private:
 	void										update();
 private:
