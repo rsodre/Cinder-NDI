@@ -8,6 +8,8 @@
 #include "Sync.h"
 #include <memory>
 
+#define VERBOSE 0
+
 CinderNDIReceiver::CinderNDIReceiver( const Description dscr )
 {
 	if( ! NDIlib_initialize() ) {
@@ -94,7 +96,9 @@ void CinderNDIReceiver::receiveVideo()
 	switch( NDIlib_recv_capture_v2( mNDIReceiver, &videoFrame, nullptr, nullptr, 500 ) ) {
 		case NDIlib_frame_type_video:
 		{
+#if VERBOSE
 			std::cout << "Received video frame with resolution : ( " << videoFrame.xres << ", " << videoFrame.yres << " ) " << std::endl;
+#endif
 			auto surface = ci::Surface( videoFrame.p_data, videoFrame.xres, videoFrame.yres, videoFrame.line_stride_in_bytes, ci::SurfaceChannelOrder::RGBA );
 			auto tex = std::make_shared<ci::gl::Texture>( surface );
 			auto fence = ci::gl::Sync::create();
@@ -106,7 +110,9 @@ void CinderNDIReceiver::receiveVideo()
 		case NDIlib_frame_type_none:
 		default:
 		{
+#if VERBOSE
 			std::cout << "No data available...." << std::endl;
+#endif
 			break;
 		}
 	}
@@ -121,7 +127,9 @@ void CinderNDIReceiver::receiveAudio()
 	switch( NDIlib_recv_capture_v2( mNDIReceiver, nullptr, &audioFrame, nullptr, 50 ) ) { 
 		case NDIlib_frame_type_audio:
 		{
+#if VERBOSE
 			std::cout << "Received audio frame with no_samples : " << audioFrame.no_samples << " channels: " << audioFrame.no_channels << " channel stride: " << audioFrame.channel_stride_in_bytes << std::endl;
+#endif
 			{
 				std::lock_guard<std::mutex> lock( mAudioMutex );
 				if( ! mCurrentAudioBuffer || mCurrentAudioBuffer->getNumChannels() != audioFrame.no_channels ) {
@@ -145,7 +153,9 @@ void CinderNDIReceiver::receiveAudio()
 		default:
 		case NDIlib_frame_type_none:
 		{
+#if VERBOSE
 			std::cout << "No data available...." << std::endl;
+#endif
 			break;
 		}
 	}
