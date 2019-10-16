@@ -37,28 +37,25 @@ CinderNDIReceiver::CinderNDIReceiver( const Description dscr )
 
 CinderNDIReceiver::~CinderNDIReceiver()
 {
-	std::cout << "~CinderNDIReceiver()..." << std::endl;
 	{
+		std::cout << "~CinderNDIReceiver() Stop Video thread..." << std::endl;
 		mExitVideoThread = true;
-		std::cout << "~CinderNDIReceiver() mVideoFramesBuffer->cancel()" << std::endl;
 		mVideoFramesBuffer->cancel();
-		std::cout << "~CinderNDIReceiver() mVideoRecvThread->join()" << std::endl;
 		mVideoRecvThread->join();
 	}
 	{
+		std::cout << "~CinderNDIReceiver() Stop Audio thread..." << std::endl;
 		mExitAudioThread = true;
-		std::cout << "~CinderNDIReceiver() mAudioRecvThread->join()" << std::endl;
 		mAudioRecvThread->join();
 	}
 
+	std::cout << "~CinderNDIReceiver() Stop NDI..." << std::endl;
 	if( mNDIReceiver ) {
-		std::cout << "~CinderNDIReceiver() NDIlib_recv_destroy()" << std::endl;
 		NDIlib_recv_destroy( mNDIReceiver );
 		mNDIReceiver = nullptr;
 	}
-	std::cout << "~CinderNDIReceiver() NDIlib_destroy()" << std::endl;
 	NDIlib_destroy();
-	std::cout << "~CinderNDIReceiver() OK" << std::endl;
+	std::cout << "~CinderNDIReceiver() Done!" << std::endl;
 }
 
 //void CinderNDIReceiver::videoRecvThread( ci::gl::ContextRef ctx )
