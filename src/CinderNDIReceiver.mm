@@ -100,7 +100,13 @@ void CinderNDIReceiver::receiveVideo()
 			std::cout << "Received video frame with resolution : ( " << videoFrame.xres << ", " << videoFrame.yres << " ) " << std::endl;
 #endif
 			auto surface = ci::Surface( videoFrame.p_data, videoFrame.xres, videoFrame.yres, videoFrame.line_stride_in_bytes, ci::SurfaceChannelOrder::RGBA );
-			auto tex = std::make_shared<ci::gl::Texture>( surface );
+			ci::gl::Texture::Format fmt;
+#ifdef BDVJ
+			fmt.setWrapS( GL_REPEAT );
+			fmt.setWrapT( GL_REPEAT );
+			fmt.setTarget( GL_TEXTURE_RECTANGLE_ARB );		// compatible with MovieGl/Syphon
+#endif
+			auto tex = std::make_shared<ci::gl::Texture>( surface, fmt );
 			auto fence = ci::gl::Sync::create();
 			fence->clientWaitSync();
 			mVideoFramesBuffer->pushFront( tex );
