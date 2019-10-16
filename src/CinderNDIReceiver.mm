@@ -7,6 +7,7 @@
 #include "CinderNDIContext.h"
 #include "Sync.h"
 #include <memory>
+#include <sys/time.h>
 
 #define VERBOSE 0
 
@@ -36,21 +37,28 @@ CinderNDIReceiver::CinderNDIReceiver( const Description dscr )
 
 CinderNDIReceiver::~CinderNDIReceiver()
 {
+	std::cout << "~CinderNDIReceiver()..." << std::endl;
 	{
 		mExitVideoThread = true;
+		std::cout << "~CinderNDIReceiver() mVideoFramesBuffer->cancel()" << std::endl;
 		mVideoFramesBuffer->cancel();
+		std::cout << "~CinderNDIReceiver() mVideoRecvThread->join()" << std::endl;
 		mVideoRecvThread->join();
 	}
 	{
 		mExitAudioThread = true;
+		std::cout << "~CinderNDIReceiver() mAudioRecvThread->join()" << std::endl;
 		mAudioRecvThread->join();
 	}
 
 	if( mNDIReceiver ) {
+		std::cout << "~CinderNDIReceiver() NDIlib_recv_destroy()" << std::endl;
 		NDIlib_recv_destroy( mNDIReceiver );
 		mNDIReceiver = nullptr;
 	}
+	std::cout << "~CinderNDIReceiver() NDIlib_destroy()" << std::endl;
 	NDIlib_destroy();
+	std::cout << "~CinderNDIReceiver() OK" << std::endl;
 }
 
 //void CinderNDIReceiver::videoRecvThread( ci::gl::ContextRef ctx )
@@ -117,11 +125,13 @@ void CinderNDIReceiver::receiveVideo()
 		default:
 		{
 #if VERBOSE
-			std::cout << "No data available...." << std::endl;
+			std::cout << "No video data available...." << std::endl;
 #endif
 			break;
 		}
 	}
+	
+	updateFrameRate();
 }
 
 void CinderNDIReceiver::receiveAudio()
@@ -160,7 +170,7 @@ void CinderNDIReceiver::receiveAudio()
 		case NDIlib_frame_type_none:
 		{
 #if VERBOSE
-			std::cout << "No data available...." << std::endl;
+			std::cout << "No audio data available...." << std::endl;
 #endif
 			break;
 		}
@@ -180,7 +190,29 @@ ci::audio::BufferRef CinderNDIReceiver::getAudioBuffer()
 	return mCurrentAudioBuffer;
 }
 
+//-------------------------------------------------------
 // ROGER
+//
+
+void CinderNDIReceiver::updateFrameRate()
+{
+	currentFrame++;
+	fpsCount++;
+	
+	static unsigned int millisStart = 0;
+	
+	struct timeval now;
+	gettimeofday(&now, NULL);
+	unsigned int millisNow = (unsigned int) (now.tv_sec * 1000 + now.tv_usec / 1000);
+	unsigned int elapsed = millisNow - millisStart;
+	if (elapsed > 1000)
+	{
+		currentFrameRate = ((float)fpsCount / (float)elapsed) * 1000.0;
+		millisStart = millisNow;
+		fpsCount = 0;
+	}
+}
+
 void CinderNDIReceiver::bind(int unit)
 {
 	if(mVideoTexture)

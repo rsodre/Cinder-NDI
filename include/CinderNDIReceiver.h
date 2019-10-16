@@ -56,6 +56,8 @@ public:
 	ci::audio::BufferRef getAudioBuffer();
 	
 	// ROGER
+	int getCurrentFrame() { return currentFrame; }
+	float getFrameRate() { return currentFrameRate; }
 	void bind(int unit=0);
 	void unbind(int unit=0);
 private:
@@ -78,6 +80,12 @@ private:
 	std::mutex						mAudioMutex;
 	bool							mExitVideoThread{ false };
 	bool							mExitAudioThread{ false };
+	
 	// ROGER
+	unsigned int currentFrame = 0;
+	unsigned int fpsCount = 0;
+	float currentFrameRate = 0;
 	GLboolean mOldTargetBinding;
+	
+	void updateFrameRate();
 };
