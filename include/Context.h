@@ -27,6 +27,7 @@
 #include "cinder/Color.h"
 #include "cinder/Matrix44.h"
 #include "cinder/Vector.h"
+#include "cinder/gl/gl.h"
 //#include "cinder/gl/Shader.h"
 
 #include <vector>

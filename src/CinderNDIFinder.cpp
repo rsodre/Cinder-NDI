@@ -1,3 +1,4 @@
+#include "cinder/app/AppBasic.h"
 #include "CinderNDIFinder.h"
 
 CinderNDIFinder::CinderNDIFinder( const Description dscr )
